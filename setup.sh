@@ -3,7 +3,7 @@
 /usr/bin/xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-brew install bash-git-prompt git
+brew install bash-git-prompt git bash-completion
 
 curl -OL http://ethanschoonover.com/solarized/files/solarized.zip
 unzip solarized.zip
