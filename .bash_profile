@@ -2,7 +2,11 @@ alias ls='ls -FG'
 alias vi='vim'
 
 export OPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include
-export PROMPT_COMMAND="history -a;echo -ne "\"'\033]0;${PWD##*/}\007'\"";"
+HISTSIZE=
+HISTFILESIZE=
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+export PROMPT_COMMAND="history -n; history -w; history -c; history -r;echo -ne "\"'\033]0;${PWD##*/}\007'\"";"
 
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
@@ -19,10 +23,6 @@ GIT_PROMPT_END=" \\$ \[$(tput sgr0)\]"
 
 export PATH=$PATH:"/Applications/microchip/xc16/v1.24/bin"
 export PATH="/Applications/microchip/xc16/v1.11/bin":$PATH
-
-HISTSIZE=
-HISTFILESIZE=
-shopt -s histappend
 
 alias mpl='open -a /Applications/microchip/mplabx/*/mplab_ide.app'
 
