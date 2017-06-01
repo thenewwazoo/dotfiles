@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+PATH="/usr/local/bin:$PATH"
+dir="`git rev-parse --git-dir`"
+trap 'rm -f "$dir/$$.tags" "$dir/$$.cscope"' EXIT
+git ls-files | \
+  /usr/local/bin/ctags \
+    -L - \
+    -f "$dir/$$.tags" \
+    --languages=-javascript,sql,d \
+    --tag-relative=never
+mv "$dir/$$.tags" "$dir/tags"
+
+git ls-files | \
+  cscope -Rb \
+    -I ~/Development/microchip_solutions_v2012-10-15/Microchip/Include/ \
+    -f "$dir/$$.cscope" \
+    -i -
+mv "$dir/$$.cscope" "$dir/cscope.out"
