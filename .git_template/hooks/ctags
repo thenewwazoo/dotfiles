@@ -1,5 +1,7 @@
 #!/bin/sh
 set -e
+mkdir .lock # w/ set -e, this will bail early as a kind of lock
+
 PATH="/usr/local/bin:$PATH"
 dir="`git rev-parse --git-dir`"
 trap 'rm -f "$dir/$$.tags" "$dir/$$.cscope"' EXIT
@@ -18,3 +20,5 @@ git ls-files \
     -f "$dir/$$.cscope" \
     -i -
 mv "$dir/$$.cscope" "$dir/cscope.out"
+
+rmdir .lock
