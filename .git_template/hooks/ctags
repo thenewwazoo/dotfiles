@@ -16,7 +16,6 @@ mv "$dir/$$.tags" "$dir/tags"
 git ls-files \
     | awk '{print "\""$0"\""}' \
     | cscope -Rb \
-    -I ~/Development/microchip_solutions_v2012-10-15/Microchip/Include/ \
     -f "$dir/$$.cscope" \
     -i -
 mv "$dir/$$.cscope" "$dir/cscope.out"

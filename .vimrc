@@ -1,3 +1,4 @@
+execute pathogen#infect()
 filetype plugin indent on
 syntax on
 set et sw=4 ts=4
@@ -21,4 +22,22 @@ function! LoadCscope()
 endfunction
 au BufEnter /* call LoadCscope()
 
+autocmd BufWritePre * %s/\s\+$//e
+
 set clipboard=unnamed
+
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+"let g:ycm_rust_src_path="/Users/bmatt/Development/rust-1.18.0/src"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_auto_jump = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_check_on_wq = 0
+let g:syntastic_rust_checkers = ['cargo']
+let g:syntastic_java_checkers = ['']
+let g:syntastic_cpp_checkers = ['']
